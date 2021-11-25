@@ -90,7 +90,10 @@ export const LoginScreen = ({ navigation }) => {
                   <FormErrorMessage error={errorState} visible={true} />
                 ) : null}
                 {/* Login button */}
-                <Button style={styles.button} onPress={handleSubmit}>
+                <Button
+                  style={[styles.button, styles.shadowProp]}
+                  onPress={handleSubmit}
+                >
                   <Text style={styles.buttonText}>Login</Text>
                 </Button>
               </>
@@ -148,6 +151,13 @@ const styles = StyleSheet.create({
     fontWeight: "700",
     color: Colors.orange,
   },
+  shadowProp: {
+    elevation: 6,
+    shadowColor: Colors.secondary.dark,
+    shadowOffset: { width: -2, height: 4 },
+    shadowOpacity: 0.2,
+    shadowRadius: 3,
+  },
   button: {
     width: "100%",
     justifyContent: "center",
@@ -156,11 +166,6 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.primary.main,
     padding: 10,
     borderRadius: 8,
-    elevation: 6,
-    shadowColor: Colors.secondary.dark,
-    shadowOffset: { width: -2, height: 4 },
-    shadowOpacity: 0.2,
-    shadowRadius: 3,
   },
   buttonText: {
     fontSize: 20,
