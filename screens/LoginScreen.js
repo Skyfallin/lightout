@@ -130,7 +130,6 @@ const styles = StyleSheet.create({
   },
   logoContainer: {
     alignItems: "center",
-    height: "auto",
   },
   screenTitle: {
     fontSize: 32,
