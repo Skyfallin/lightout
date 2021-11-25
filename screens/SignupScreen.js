@@ -8,6 +8,7 @@ import { View, TextInput, Logo, Button, FormErrorMessage } from "../components";
 import { Images, Colors, auth } from "../config";
 import { useTogglePasswordVisibility } from "../hooks";
 import { signupValidationSchema } from "../utils";
+import { theme } from "../utils/theme";
 
 export const SignupScreen = ({ navigation }) => {
   const [errorState, setErrorState] = useState("");
@@ -15,9 +16,7 @@ export const SignupScreen = ({ navigation }) => {
   const {
     passwordVisibility,
     handlePasswordVisibility,
-    rightIcon,
     handleConfirmPasswordVisibility,
-    confirmPasswordIcon,
     confirmPasswordVisibility,
   } = useTogglePasswordVisibility();
 
@@ -60,11 +59,10 @@ export const SignupScreen = ({ navigation }) => {
               <TextInput
                 name="email"
                 leftIconName="email"
-                placeholder="Enter email"
+                placeholder="Email"
                 autoCapitalize="none"
                 keyboardType="email-address"
                 textContentType="emailAddress"
-                autoFocus={true}
                 value={values.email}
                 onChangeText={handleChange("email")}
                 onBlur={handleBlur("email")}
@@ -72,13 +70,13 @@ export const SignupScreen = ({ navigation }) => {
               <FormErrorMessage error={errors.email} visible={touched.email} />
               <TextInput
                 name="password"
-                leftIconName="key-variant"
-                placeholder="Enter password"
+                leftIconName="lock"
+                placeholder="Password"
                 autoCapitalize="none"
                 autoCorrect={false}
                 secureTextEntry={passwordVisibility}
                 textContentType="newPassword"
-                rightIcon={rightIcon}
+                // rightIcon={rightIcon}
                 handlePasswordVisibility={handlePasswordVisibility}
                 value={values.password}
                 onChangeText={handleChange("password")}
@@ -90,13 +88,13 @@ export const SignupScreen = ({ navigation }) => {
               />
               <TextInput
                 name="confirmPassword"
-                leftIconName="key-variant"
-                placeholder="Enter password"
+                leftIconName="lock"
+                placeholder="Confirm password"
                 autoCapitalize="none"
                 autoCorrect={false}
                 secureTextEntry={confirmPasswordVisibility}
                 textContentType="password"
-                rightIcon={confirmPasswordIcon}
+                // rightIcon={confirmPasswordIcon}
                 handlePasswordVisibility={handleConfirmPasswordVisibility}
                 value={values.confirmPassword}
                 onChangeText={handleChange("confirmPassword")}
@@ -111,19 +109,23 @@ export const SignupScreen = ({ navigation }) => {
                 <FormErrorMessage error={errorState} visible={true} />
               ) : null}
               {/* Signup button */}
-              <Button style={styles.button} onPress={handleSubmit}>
+              <Button
+                style={[styles.button, theme.shadowProp]}
+                onPress={handleSubmit}
+              >
                 <Text style={styles.buttonText}>Signup</Text>
               </Button>
             </>
           )}
         </Formik>
-        {/* Button to navigate to Login screen */}
-        <Button
-          style={styles.borderlessButtonContainer}
-          borderless
-          title={"Already have an account?"}
-          onPress={() => navigation.navigate("Login")}
-        />
+        <View style={styles.footerView}>
+          <Text
+            onPress={() => navigation.navigate("Login")}
+            style={styles.footerLink}
+          >
+            Already have an account?
+          </Text>
+        </View>
       </KeyboardAwareScrollView>
     </View>
   );
@@ -141,7 +143,7 @@ const styles = StyleSheet.create({
   screenTitle: {
     fontSize: 32,
     fontWeight: "700",
-    color: Colors.black,
+    color: Colors.secondary.dark,
     paddingTop: 20,
   },
   button: {
@@ -149,7 +151,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     marginTop: 8,
-    backgroundColor: Colors.orange,
+    backgroundColor: Colors.primary.main,
     padding: 10,
     borderRadius: 8,
   },
@@ -162,5 +164,17 @@ const styles = StyleSheet.create({
     marginTop: 16,
     alignItems: "center",
     justifyContent: "center",
+  },
+  footerView: {
+    flex: 1,
+    alignItems: "center",
+  },
+  footerLink: {
+    marginTop: 16,
+    alignItems: "center",
+    justifyContent: "center",
+    color: Colors.primary.dark,
+    fontWeight: "bold",
+    fontSize: 16,
   },
 });

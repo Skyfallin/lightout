@@ -8,6 +8,7 @@ import { View, TextInput, Logo, Button, FormErrorMessage } from "../components";
 import { Images, Colors, auth } from "../config";
 import { useTogglePasswordVisibility } from "../hooks";
 import { loginValidationSchema } from "../utils";
+import { theme } from "../utils/theme";
 
 export const LoginScreen = ({ navigation }) => {
   const [errorState, setErrorState] = useState("");
@@ -91,10 +92,10 @@ export const LoginScreen = ({ navigation }) => {
                 ) : null}
                 {/* Login button */}
                 <Button
-                  style={[styles.button, styles.shadowProp]}
+                  style={[styles.button, theme.shadowProp]}
                   onPress={handleSubmit}
                 >
-                  <Text style={styles.buttonText}>Login</Text>
+                  <Text style={[styles.buttonText, theme]}>Login</Text>
                 </Button>
               </>
             )}
@@ -137,7 +138,7 @@ const styles = StyleSheet.create({
   screenTitle: {
     fontSize: 32,
     fontWeight: "700",
-    color: Colors.secondary.dark,
+    color: Colors.primary.dark,
     paddingTop: 20,
   },
   footer: {
@@ -150,13 +151,6 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: "700",
     color: Colors.orange,
-  },
-  shadowProp: {
-    elevation: 6,
-    shadowColor: Colors.secondary.dark,
-    shadowOffset: { width: -2, height: 4 },
-    shadowOpacity: 0.2,
-    shadowRadius: 3,
   },
   button: {
     width: "100%",
