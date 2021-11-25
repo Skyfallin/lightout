@@ -57,7 +57,6 @@ export const LoginScreen = ({ navigation }) => {
                   keyboardAppearance="dark"
                   keyboardType="email-address"
                   textContentType="emailAddress"
-                  autoFocus={true}
                   value={values.email}
                   onChangeText={handleChange("email")}
                   onBlur={handleBlur("email")}
@@ -68,7 +67,7 @@ export const LoginScreen = ({ navigation }) => {
                 />
                 <TextInput
                   name="password"
-                  leftIconName="key-variant"
+                  leftIconName="lock"
                   placeholder="Password"
                   placeholderTextColor="#aaaaaa"
                   autoCapitalize="none"
@@ -97,19 +96,26 @@ export const LoginScreen = ({ navigation }) => {
               </>
             )}
           </Formik>
-          {/* Button to navigate to SignupScreen to create a new account */}
-          <Button
-            style={styles.borderlessButtonContainer}
-            borderless
-            title={"Create a new account?"}
-            onPress={() => navigation.navigate("Signup")}
-          />
-          <Button
-            style={styles.borderlessButtonContainer}
-            borderless
-            title={"Forgot Password"}
-            onPress={() => navigation.navigate("ForgotPassword")}
-          />
+          <View style={styles.footerView}>
+            <Text
+              onPress={() => navigation.navigate("Signup")}
+              style={styles.footerText}
+            >
+              Don't have an account?{" "}
+              <Text
+                onPress={() => navigation.navigate("Signup")}
+                style={styles.footerLink}
+              >
+                Sign up
+              </Text>
+            </Text>
+            <Text
+              onPress={() => navigation.navigate("ForgotPassword")}
+              style={styles.footerLink}
+            >
+              Forgot password?
+            </Text>
+          </View>
         </KeyboardAwareScrollView>
       </View>
     </>
@@ -129,7 +135,7 @@ const styles = StyleSheet.create({
   screenTitle: {
     fontSize: 32,
     fontWeight: "700",
-    color: Colors.black,
+    color: Colors.secondary.dark,
     paddingTop: 20,
   },
   footer: {
@@ -148,18 +154,35 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     marginTop: 8,
-    backgroundColor: Colors.primary,
+    backgroundColor: Colors.primary.main,
     padding: 10,
-    // borderRadius: 8,
+    borderRadius: 8,
+    elevation: 6,
+    shadowColor: Colors.secondary.dark,
+    shadowOffset: { width: -2, height: 4 },
+    shadowOpacity: 0.2,
+    shadowRadius: 3,
   },
   buttonText: {
     fontSize: 20,
     color: Colors.white,
     fontWeight: "700",
   },
-  borderlessButtonContainer: {
+  footerView: {
+    flex: 1,
+    alignItems: "center",
+  },
+  footerText: {
+    marginTop: 16,
+    fontSize: 16,
+    color: Colors.secondary.dark,
+  },
+  footerLink: {
     marginTop: 16,
     alignItems: "center",
     justifyContent: "center",
+    color: Colors.primary.dark,
+    fontWeight: "bold",
+    fontSize: 16,
   },
 });
