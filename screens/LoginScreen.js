@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Text, StyleSheet } from "react-native";
+import { Text, StatusBar, StyleSheet } from "react-native";
 import { Formik } from "formik";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
@@ -23,11 +23,12 @@ export const LoginScreen = ({ navigation }) => {
   return (
     <>
       <View isSafe style={styles.container}>
+        <StatusBar barStyle="dark-content" />
         <KeyboardAwareScrollView enableOnAndroid={true}>
           {/* LogoContainer: consits app logo and screen title */}
           <View style={styles.logoContainer}>
             <Logo uri={Images.logo} />
-            <Text style={styles.screenTitle}>Welcome back!</Text>
+            <Text style={styles.screenTitle}>Lightout</Text>
           </View>
           <Formik
             initialValues={{
@@ -50,8 +51,10 @@ export const LoginScreen = ({ navigation }) => {
                 <TextInput
                   name="email"
                   leftIconName="email"
-                  placeholder="Enter email"
+                  placeholder="Email"
+                  placeholderTextColor="#aaaaaa"
                   autoCapitalize="none"
+                  keyboardAppearance="dark"
                   keyboardType="email-address"
                   textContentType="emailAddress"
                   autoFocus={true}
@@ -66,9 +69,11 @@ export const LoginScreen = ({ navigation }) => {
                 <TextInput
                   name="password"
                   leftIconName="key-variant"
-                  placeholder="Enter password"
+                  placeholder="Password"
+                  placeholderTextColor="#aaaaaa"
                   autoCapitalize="none"
                   autoCorrect={false}
+                  keyboardAppearance="dark"
                   secureTextEntry={passwordVisibility}
                   textContentType="password"
                   rightIcon={rightIcon}
@@ -107,13 +112,6 @@ export const LoginScreen = ({ navigation }) => {
           />
         </KeyboardAwareScrollView>
       </View>
-
-      {/* App info footer
-      <View style={styles.footer}>
-        <Text style={styles.footerText}>
-          Expo Firebase Starter App (based on managed workflow)
-        </Text>
-      </View> */}
     </>
   );
 };
@@ -122,10 +120,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: Colors.white,
-    paddingHorizontal: 12,
+    paddingHorizontal: 25,
   },
   logoContainer: {
     alignItems: "center",
+    height: "auto",
   },
   screenTitle: {
     fontSize: 32,
@@ -149,9 +148,9 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     marginTop: 8,
-    backgroundColor: Colors.orange,
+    backgroundColor: Colors.primary,
     padding: 10,
-    borderRadius: 8,
+    // borderRadius: 8,
   },
   buttonText: {
     fontSize: 20,
