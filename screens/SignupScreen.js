@@ -60,6 +60,7 @@ export const SignupScreen = ({ navigation }) => {
                 name="email"
                 leftIconName="email"
                 placeholder="Email"
+                placeholderTextColor="#aaaaaa"
                 autoCapitalize="none"
                 keyboardType="email-address"
                 textContentType="emailAddress"
@@ -72,6 +73,7 @@ export const SignupScreen = ({ navigation }) => {
                 name="password"
                 leftIconName="lock"
                 placeholder="Password"
+                placeholderTextColor="#aaaaaa"
                 autoCapitalize="none"
                 autoCorrect={false}
                 secureTextEntry={passwordVisibility}
@@ -90,6 +92,7 @@ export const SignupScreen = ({ navigation }) => {
                 name="confirmPassword"
                 leftIconName="lock"
                 placeholder="Confirm password"
+                placeholderTextColor="#aaaaaa"
                 autoCapitalize="none"
                 autoCorrect={false}
                 secureTextEntry={confirmPasswordVisibility}
@@ -159,11 +162,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: Colors.white,
     fontWeight: "700",
-  },
-  borderlessButtonContainer: {
-    marginTop: 16,
-    alignItems: "center",
-    justifyContent: "center",
   },
   footerView: {
     flex: 1,
