@@ -13,11 +13,8 @@ import DropDownPicker from "react-native-dropdown-picker";
 export const LoginPhoneScreen = ({ navigation }) => {
   const [errorState, setErrorState] = useState("");
   const [open, setOpen] = useState(false);
-  const [value, setValue] = useState(null);
-  const [items, setItems] = useState([
-    { label: "Apple", value: "apple" },
-    { label: "Banana", value: "banana" },
-  ]);
+  const [value, setValue] = useState("+1");
+  const [items, setItems] = useState([{ label: "+1", value: "+1" }]);
 
   const handleLogin = (value) => {
     const { phone } = value;
@@ -60,30 +57,23 @@ export const LoginPhoneScreen = ({ navigation }) => {
                     alignItems: "center",
                   }}
                 >
-                  <DropDownPicker
-                    containerStyle={{
-                      marginRight: 5,
-                      width: "20%",
-                    }}
-                    open={open}
-                    value={value}
-                    items={items}
-                    setOpen={setOpen}
-                    setValue={setValue}
-                    setItems={setItems}
-                    listMode="SCROLLVIEW"
-                    placeholder="+1"
-                    placeholderStyle={{
-                      color: Colors.secondary.dark,
-                      fontWeight: "bold",
-                    }}
+                  <View
                     style={{
-                      borderColor: Colors.secondary.main,
+                      backgroundColor: Colors.white,
+                      borderRadius: 8,
+                      borderWidth: 1,
+                      borderColor: Colors.secondary.light,
+                      padding: 13,
+                      marginRight: 5,
+                      width: "15%",
                     }}
-                    labelStyle={{
-                      borderColor: "red",
-                    }}
-                  />
+                  >
+                    <Text
+                      style={{ color: Colors.secondary.main, fontSize: 18 }}
+                    >
+                      +1
+                    </Text>
+                  </View>
                   {/* Input fields */}
                   <View style={{ flex: 1 }}>
                     {/* // TODO: inline */}

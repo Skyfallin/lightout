@@ -41,6 +41,27 @@ export const DropDownPicker = ({
         listMode="SCROLLVIEW"
         placeholder="+1"
       />
+      {/* <DropDownPicker
+                    containerStyle={{
+                      marginRight: 5,
+                      width: "20%",
+                    }}
+                    open={open}
+                    value={value}
+                    items={items}
+                    setOpen={setOpen}
+                    setValue={setValue}
+                    setItems={{}}
+                    listMode="SCROLLVIEW"
+                    placeholder="+1"
+                    placeholderStyle={{
+                      color: Colors.secondary.dark,
+                      fontWeight: "bold",
+                    }}
+                    style={{
+                      borderColor: Colors.secondary.main,
+                    }}
+                  /> */}
       )
     </View>
   );
