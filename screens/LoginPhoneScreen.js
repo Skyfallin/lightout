@@ -80,6 +80,9 @@ export const LoginPhoneScreen = ({ navigation }) => {
                     style={{
                       borderColor: Colors.secondary.main,
                     }}
+                    labelStyle={{
+                      borderColor: "red",
+                    }}
                   />
                   {/* Input fields */}
                   <View style={{ flex: 1 }}>
@@ -186,7 +189,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginTop: 8,
     backgroundColor: Colors.primary.main,
-    padding: 10,
+    padding: 11,
     borderRadius: 8,
   },
   buttonText: {
