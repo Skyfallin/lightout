@@ -8,18 +8,12 @@ import { View, TextInput, Logo, Button, FormErrorMessage } from "../components";
 import { Images, Colors, auth } from "../config";
 import { loginValidationPhone } from "../utils";
 import { theme } from "../utils/theme";
-import DropDownPicker from "react-native-dropdown-picker";
 
 export const LoginPhoneScreen = ({ navigation }) => {
   const [errorState, setErrorState] = useState("");
-  const [open, setOpen] = useState(false);
-  const [value, setValue] = useState("+1");
-  const [items, setItems] = useState([{ label: "+1", value: "+1" }]);
 
-  const handleLogin = (value) => {
-    const { phone } = value;
-    // TODO: change to dropdown menu value
-    signInWithPhoneNumber(auth, email, password).catch((error) =>
+  const handleLogin = (phone) => {
+    signInWithPhoneNumber(auth, "+1" + phone, password).catch((error) =>
       setErrorState(error.message)
     );
   };
@@ -76,7 +70,6 @@ export const LoginPhoneScreen = ({ navigation }) => {
                   </View>
                   {/* Input fields */}
                   <View style={{ flex: 1 }}>
-                    {/* // TODO: inline */}
                     <TextInput
                       name="email"
                       leftIconName="pound"
