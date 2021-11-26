@@ -1,23 +1,28 @@
 import React, { useState } from "react";
-import { Text, StatusBar, StyleSheet, Pressable } from "react-native";
+import { Text, StatusBar, StyleSheet, Picker, Pressable } from "react-native";
 import { Formik } from "formik";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithPhoneNumber } from "firebase/auth";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 import { View, TextInput, Logo, Button, FormErrorMessage } from "../components";
 import { Images, Colors, auth } from "../config";
-import { useTogglePasswordVisibility } from "../hooks";
-import { loginValidationSchema } from "../utils";
+import { loginValidationPhone } from "../utils";
 import { theme } from "../utils/theme";
+import DropDownPicker from "react-native-dropdown-picker";
 
 export const LoginPhoneScreen = ({ navigation }) => {
   const [errorState, setErrorState] = useState("");
-  const { passwordVisibility, handlePasswordVisibility, rightIcon } =
-    useTogglePasswordVisibility();
+  const [open, setOpen] = useState(false);
+  const [value, setValue] = useState(null);
+  const [items, setItems] = useState([
+    { label: "Apple", value: "apple" },
+    { label: "Banana", value: "banana" },
+  ]);
 
-  const handleLogin = (values) => {
-    const { email, password } = values;
-    signInWithEmailAndPassword(auth, email, password).catch((error) =>
+  const handleLogin = (value) => {
+    const { phone } = value;
+    // TODO: change to dropdown menu value
+    signInWithPhoneNumber(auth, email, password).catch((error) =>
       setErrorState(error.message)
     );
   };
@@ -33,10 +38,9 @@ export const LoginPhoneScreen = ({ navigation }) => {
           </View>
           <Formik
             initialValues={{
-              email: "",
-              password: "",
+              phone: "",
             }}
-            validationSchema={loginValidationSchema}
+            validationSchema={loginValidationPhone}
             onSubmit={(values) => handleLogin(values)}
           >
             {({
@@ -48,49 +52,60 @@ export const LoginPhoneScreen = ({ navigation }) => {
               handleBlur,
             }) => (
               <>
-                {/* Input fields */}
-                <TextInput
-                  name="email"
-                  leftIconName="pound"
-                  placeholder="Phone number"
-                  placeholderTextColor="#aaaaaa"
-                  autoCapitalize="none"
-                  keyboardAppearance="dark"
-                  keyboardType="phone-pad"
-                  textContentType="emailAddress"
-                  value={values.email}
-                  onChangeText={handleChange("email")}
-                  onBlur={handleBlur("email")}
-                />
+                {/* // TODO: inline styles */}
+                <View
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    alignItems: "center",
+                  }}
+                >
+                  <DropDownPicker
+                    containerStyle={{
+                      marginRight: 5,
+                      width: "20%",
+                    }}
+                    open={open}
+                    value={value}
+                    items={items}
+                    setOpen={setOpen}
+                    setValue={setValue}
+                    setItems={setItems}
+                    listMode="SCROLLVIEW"
+                    placeholder="+1"
+                    placeholderStyle={{
+                      color: Colors.secondary.dark,
+                      fontWeight: "bold",
+                    }}
+                    style={{
+                      borderColor: Colors.secondary.main,
+                    }}
+                  />
+                  {/* Input fields */}
+                  <View style={{ flex: 1 }}>
+                    {/* // TODO: inline */}
+                    <TextInput
+                      name="email"
+                      leftIconName="pound"
+                      placeholder="Phone number"
+                      placeholderTextColor="#aaaaaa"
+                      autoCapitalize="none"
+                      keyboardAppearance="dark"
+                      keyboardType="phone-pad"
+                      textContentType="emailAddress" // TODO: fix
+                      value={values.phone}
+                      onChangeText={handleChange("phone")}
+                      onBlur={handleBlur("phone")}
+                    />
+                  </View>
+                </View>
                 <FormErrorMessage
-                  error={errors.email}
-                  visible={touched.email}
+                  error={errors.phone}
+                  visible={touched.phone}
                 />
-                {/* <TextInput
-                  name="password"
-                  leftIconName="lock"
-                  placeholder="Password"
-                  placeholderTextColor="#aaaaaa"
-                  autoCapitalize="none"
-                  autoCorrect={false}
-                  keyboardAppearance="dark"
-                  secureTextEntry={passwordVisibility}
-                  textContentType="password"
-                  rightIcon={rightIcon}
-                  handlePasswordVisibility={handlePasswordVisibility}
-                  value={values.password}
-                  onChangeText={handleChange("password")}
-                  onBlur={handleBlur("password")}
-                />
-                <FormErrorMessage
-                  error={errors.password}
-                  visible={touched.password}
-                /> */}
-                {/* Display Screen Error Mesages */}
                 {errorState !== "" ? (
                   <FormErrorMessage error={errorState} visible={true} />
                 ) : null}
-                {/* Login button */}
                 <Button
                   style={[styles.button, theme.shadowProp]}
                   onPress={handleSubmit}
