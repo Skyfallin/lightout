@@ -17,7 +17,7 @@ export const ForgotPasswordScreen = ({ navigation }) => {
     sendPasswordResetEmail(auth, email)
       .then(() => {
         console.log("Success: Password Reset Email sent.");
-        navigation.navigate("Login");
+        navigation.navigate("LoginPhone");
       })
       .catch((error) => setErrorState(error.message));
   };
@@ -71,7 +71,7 @@ export const ForgotPasswordScreen = ({ navigation }) => {
         </Formik>
         {/* Button to navigate to Login screen */}
         <Pressable
-          onPress={() => navigation.navigate("Login")}
+          onPress={() => navigation.navigate("LoginPhone")}
           children={({ pressed }) => (
             <Text
               style={{

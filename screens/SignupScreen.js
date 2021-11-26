@@ -123,7 +123,7 @@ export const SignupScreen = ({ navigation }) => {
         </Formik>
         <View style={styles.footerView}>
           <Pressable
-            onPress={() => navigation.navigate("Login")}
+            onPress={() => navigation.navigate("LoginPhone")}
             children={({ pressed }) => (
               <Text
                 style={{

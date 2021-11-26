@@ -51,12 +51,12 @@ export const LoginPhoneScreen = ({ navigation }) => {
                 {/* Input fields */}
                 <TextInput
                   name="email"
-                  leftIconName="email"
+                  leftIconName="pound"
                   placeholder="Phone number"
                   placeholderTextColor="#aaaaaa"
                   autoCapitalize="none"
                   keyboardAppearance="dark"
-                  keyboardType="email-address"
+                  keyboardType="phone-pad"
                   textContentType="emailAddress"
                   value={values.email}
                   onChangeText={handleChange("email")}
@@ -66,7 +66,7 @@ export const LoginPhoneScreen = ({ navigation }) => {
                   error={errors.email}
                   visible={touched.email}
                 />
-                <TextInput
+                {/* <TextInput
                   name="password"
                   leftIconName="lock"
                   placeholder="Password"
@@ -85,7 +85,7 @@ export const LoginPhoneScreen = ({ navigation }) => {
                 <FormErrorMessage
                   error={errors.password}
                   visible={touched.password}
-                />
+                /> */}
                 {/* Display Screen Error Mesages */}
                 {errorState !== "" ? (
                   <FormErrorMessage error={errorState} visible={true} />
