@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, Text } from "react-native";
+import { Pressable, StyleSheet, Text } from "react-native";
 import { Formik } from "formik";
 import { sendPasswordResetEmail } from "firebase/auth";
 
@@ -26,57 +26,63 @@ export const ForgotPasswordScreen = ({ navigation }) => {
     <View isSafe style={styles.container}>
       <View style={styles.innerContainer}>
         <Text style={styles.screenTitle}>Reset your password</Text>
-      </View>
-      <Formik
-        initialValues={{ email: "" }}
-        validationSchema={passwordResetSchema}
-        onSubmit={(values) => handleSendPasswordResetEmail(values)}
-      >
-        {({
-          values,
-          touched,
-          errors,
-          handleChange,
-          handleSubmit,
-          handleBlur,
-        }) => (
-          <>
-            {/* Email input field */}
-            <TextInput
-              name="email"
-              leftIconName="email"
-              placeholder="Email"
-              placeholderTextColor="#aaaaaa"
-              autoCapitalize="none"
-              keyboardType="email-address"
-              textContentType="emailAddress"
-              value={values.email}
-              onChangeText={handleChange("email")}
-              onBlur={handleBlur("email")}
-            />
-            <FormErrorMessage error={errors.email} visible={touched.email} />
-            {/* Display Screen Error Mesages */}
-            {errorState !== "" ? (
-              <FormErrorMessage error={errorState} visible={true} />
-            ) : null}
-            {/* Password Reset Send Email  button */}
-            <Button
-              style={[styles.button, theme.shadowProp]}
-              onPress={handleSubmit}
-            >
-              <Text style={styles.buttonText}>Send Reset Email</Text>
-            </Button>
-          </>
-        )}
-      </Formik>
-      {/* Button to navigate to Login screen */}
-      <View style={styles.footerView}>
-        <Text
-          onPress={() => navigation.navigate("Login")}
-          style={styles.footerLink}
+        {/* </View> */}
+        <Formik
+          initialValues={{ email: "" }}
+          validationSchema={passwordResetSchema}
+          onSubmit={(values) => handleSendPasswordResetEmail(values)}
         >
-          Return to Login
-        </Text>
+          {({
+            values,
+            touched,
+            errors,
+            handleChange,
+            handleSubmit,
+            handleBlur,
+          }) => (
+            <>
+              {/* Email input field */}
+              <TextInput
+                name="email"
+                leftIconName="email"
+                placeholder="Email"
+                placeholderTextColor="#aaaaaa"
+                autoCapitalize="none"
+                keyboardType="email-address"
+                textContentType="emailAddress"
+                value={values.email}
+                onChangeText={handleChange("email")}
+                onBlur={handleBlur("email")}
+              />
+              <FormErrorMessage error={errors.email} visible={touched.email} />
+              {/* Display Screen Error Mesages */}
+              {errorState !== "" ? (
+                <FormErrorMessage error={errorState} visible={true} />
+              ) : null}
+              {/* Password Reset Send Email  button */}
+              <Button
+                style={[styles.button, theme.shadowProp]}
+                onPress={handleSubmit}
+              >
+                <Text style={styles.buttonText}>Send Reset Email</Text>
+              </Button>
+            </>
+          )}
+        </Formik>
+        {/* Button to navigate to Login screen */}
+        <Pressable
+          onPress={() => navigation.navigate("Login")}
+          children={({ pressed }) => (
+            <Text
+              style={{
+                ...styles.footerLink,
+                color: pressed ? Colors.primary.main : styles.footerLink.color,
+              }}
+            >
+              Return to Login
+            </Text>
+          )}
+        />
       </View>
     </View>
   );
@@ -85,11 +91,13 @@ export const ForgotPasswordScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Colors.white,
     paddingHorizontal: 25,
   },
-  innercontainer: {
+  innerContainer: {
+    flex: 1,
+    display: "flex",
     alignItems: "center",
+    justifyContent: "center",
   },
   screenTitle: {
     fontSize: 32,

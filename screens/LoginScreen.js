@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Text, StatusBar, StyleSheet } from "react-native";
+import { Text, StatusBar, StyleSheet, Pressable } from "react-native";
 import { Formik } from "formik";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
@@ -101,25 +101,39 @@ export const LoginScreen = ({ navigation }) => {
             )}
           </Formik>
           <View style={styles.footerView}>
-            <Text
+            <Text style={styles.footerText}>Don't have an account? </Text>
+            <Pressable
               onPress={() => navigation.navigate("Signup")}
-              style={styles.footerText}
-            >
-              Don't have an account?{" "}
-              <Text
-                onPress={() => navigation.navigate("Signup")}
-                style={styles.footerLink}
-              >
-                Sign up
-              </Text>
-            </Text>
-            <Text
-              onPress={() => navigation.navigate("ForgotPassword")}
-              style={styles.footerLink}
-            >
-              Forgot password?
-            </Text>
+              children={({ pressed }) => (
+                <Text
+                  style={{
+                    ...styles.footerLink,
+                    color: pressed
+                      ? Colors.primary.main
+                      : styles.footerLink.color,
+                  }}
+                >
+                  Sign Up
+                </Text>
+              )}
+            />
           </View>
+          <Pressable
+            onPress={() => navigation.navigate("ForgotPassword")}
+            children={({ pressed }) => (
+              <Text
+                style={{
+                  ...styles.footerLink,
+                  alignSelf: "center",
+                  color: pressed
+                    ? Colors.primary.main
+                    : styles.footerLink.color,
+                }}
+              >
+                Forgot password?
+              </Text>
+            )}
+          />
         </KeyboardAwareScrollView>
       </View>
     </>
@@ -129,7 +143,6 @@ export const LoginScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Colors.white,
     paddingHorizontal: 25,
   },
   logoContainer: {
@@ -168,7 +181,8 @@ const styles = StyleSheet.create({
   },
   footerView: {
     flex: 1,
-    alignItems: "center",
+    flexDirection: "row",
+    justifyContent: "center",
   },
   footerText: {
     marginTop: 16,

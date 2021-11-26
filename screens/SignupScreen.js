@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Text, StyleSheet } from "react-native";
+import { Text, StyleSheet, Pressable } from "react-native";
 import { Formik } from "formik";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
@@ -122,12 +122,21 @@ export const SignupScreen = ({ navigation }) => {
           )}
         </Formik>
         <View style={styles.footerView}>
-          <Text
+          <Pressable
             onPress={() => navigation.navigate("Login")}
-            style={styles.footerLink}
-          >
-            Already have an account?
-          </Text>
+            children={({ pressed }) => (
+              <Text
+                style={{
+                  ...styles.footerLink,
+                  color: pressed
+                    ? Colors.primary.main
+                    : styles.footerLink.color,
+                }}
+              >
+                Already have an account?
+              </Text>
+            )}
+          />
         </View>
       </KeyboardAwareScrollView>
     </View>
@@ -137,7 +146,6 @@ export const SignupScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Colors.white,
     paddingHorizontal: 25,
   },
   logoContainer: {
