@@ -10,7 +10,7 @@ import { useTogglePasswordVisibility } from "../hooks";
 import { loginValidationSchema } from "../utils";
 import { theme } from "../utils/theme";
 
-export const LoginScreen = ({ navigation }) => {
+export const LoginEmailScreen = ({ navigation }) => {
   const [errorState, setErrorState] = useState("");
   const { passwordVisibility, handlePasswordVisibility, rightIcon } =
     useTogglePasswordVisibility();
