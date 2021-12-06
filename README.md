@@ -28,6 +28,7 @@
 
 - `yarn or yarn install` -- Install dependencies.
 - `expo start` -- Start the Metro server
+- > expo run:android -- Run the Android app bindary locally 
 
 ## Branches
 
