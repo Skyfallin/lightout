@@ -24,15 +24,10 @@
 
 <!-- Body -->
 
-```sh
-yarn ci
-```
-
 ## Usage
 
-- `yarn ci` -- Install dependencies.
-- `yarn ios` -- Build the iOS App (requires a MacOS computer).
-- `yarn android` -- Build the Android App.
+- `yarn or yarn install` -- Install dependencies.
+- `expo start` -- Start the Metro server
 
 ## Branches
 
