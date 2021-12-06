@@ -27,8 +27,9 @@
 ## Usage
 
 - `yarn or yarn install` -- Install dependencies.
-- `expo start` -- Start the Metro server
-- > expo run:android -- Run the Android app bindary locally 
+- `expo start` -- Start a local dev server for the app (testing on physical devices)
+- `expo run:android` -- Run the Android app bindary locally 
+- `expo run:ios` -- Run the iOS app binary locally 
 
 ## Branches
 
