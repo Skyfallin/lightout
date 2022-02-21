@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Button } from "react-native";
+import { StyleSheet, Button, Text } from "react-native";
 import { View } from "../components";
 import { signOut } from "firebase/auth";
 
@@ -12,6 +12,7 @@ export const HomeScreen = () => {
   return (
     <View style={styles.container}>
       <Button title="Sign Out" onPress={handleLogout} />
+      <Text>Hello</Text>
     </View>
   );
 };

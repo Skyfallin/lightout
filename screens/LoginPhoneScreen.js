@@ -135,6 +135,22 @@ export const LoginPhoneScreen = ({ navigation }) => {
               </Text>
             )}
           />
+          <Pressable
+            onPress={() => navigation.navigate("LoginEmail")}
+            children={({ pressed }) => (
+              <Text
+                style={{
+                  ...styles.footerLink,
+                  alignSelf: "center",
+                  color: pressed
+                    ? Colors.primary.main
+                    : styles.footerLink.color,
+                }}
+              >
+                Skip
+              </Text>
+            )}
+          />
         </KeyboardAwareScrollView>
       </View>
     </>
