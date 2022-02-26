@@ -4,6 +4,7 @@ import { SignupScreen } from "./SignupScreen";
 import { HomeScreen } from "./HomeScreen";
 import { ForgotPasswordScreen } from "./ForgotPasswordScreen";
 import { FriendsScreen } from "./FriendsScreen";
+import { MessagesScreen } from "./MessagesScreen";
 
 export {
   LoginEmailScreen,
@@ -12,4 +13,5 @@ export {
   HomeScreen,
   ForgotPasswordScreen,
   FriendsScreen,
+  MessagesScreen,
 };
