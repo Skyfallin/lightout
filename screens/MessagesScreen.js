@@ -30,7 +30,6 @@ export const MessagesScreen = () => {
     }, [])
     return (
       <View style={styles.container}>
-        <Text>Hello</Text>
         <GiftedChat 
             messages={messages}
             onSend={messages => onSend(messages)}
