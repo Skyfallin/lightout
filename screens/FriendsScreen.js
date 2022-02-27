@@ -1,23 +1,27 @@
 import React from "react";
-import { StyleSheet, Text } from "react-native";
+import { StyleSheet, Text, Pressable } from "react-native";
 import { View, Button, DropDownPicker, Logo, Icon } from "../components";
 import { Images, Colors, auth } from "../config";
 
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 import { theme } from "../utils/theme";
+import { CurrentRenderContext } from "@react-navigation/native";
 
 export const FriendsScreen = () => {
 
   return (
     <View isSafe style={styles.container}>
       <KeyboardAwareScrollView enableOnAndroid={true}>
-        <Button style={[styles.button, theme.shadowProp]}>
-          <Icon library= 'MaterialIcons' name='person' size='24' color='black'></Icon>
-        </Button>
-        <Button style={[styles.button, theme.shadowProp]}>
-          <Icon name='map-marker' size='24' color='black'></Icon>
-        </Button>
+        <View style={styles.doubleButton}>
+          <Button style={styles.nearbyTab}>
+            <Icon library='MaterialIcons' name='person' size='24' color='black'></Icon>
+          </Button>
+          <View style={styles.verticalLine}></View>
+          <Button style={[styles.nearbyTab, theme.shadowProp]}>
+            <Icon name='map-marker' size='24' color='black'></Icon>
+          </Button>
+        </View>
       </KeyboardAwareScrollView>
     </View>
   );
@@ -42,4 +46,23 @@ const styles = StyleSheet.create({
     color: Colors.white,
     fontWeight: "700",
   },
+
+  nearbyTab: {
+    flex: 1,
+    borderRadius: 25,
+    backgroundColor: Colors.primary.main,
+    height: '100%',
+    width: '50%',
+    alignItems: 'center',
+  },
+
+  verticalLine: {
+    height: '100%',
+    width: 1,
+    backgroundColor: '#cccccc',
+  },
+
+  doubleButton: {
+    flexDirection: 'row',
+  }
 });
